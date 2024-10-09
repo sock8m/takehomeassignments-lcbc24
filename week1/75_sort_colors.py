@@ -5,13 +5,26 @@ class Solution(object):
         :rtype: None Do not return anything, modify nums in-place instead.
         """
 
-        for i in range(len(nums)):
-            if nums[i]>nums[i+1]:
-                temp=nums[i]
-                nums[i]=nums[i+1]
-                nums[i+1]=temp
+        red = 0
+        white = 0
+        blue = 0
+
+        for i in nums:
+            if i==0:
+                red = red+1
+            elif i==1:
+                white = white+1
+            elif i==2:
+                blue = blue+1
+        
+        print(red, white, blue)
+        
+        pointer = 0
+        while pointer<len(nums):
+            if pointer<red:
+                nums[pointer]=0
+            elif pointer<red+white:
+                nums[pointer]=1
             else:
-                if i<len(nums)-1:
-                    i = i+1
-                else:
-                    return
+                nums[pointer]=2
+            pointer = pointer+1
